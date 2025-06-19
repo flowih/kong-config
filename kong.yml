@@ -1,64 +1,57 @@
-# Versão do formato de configuração declarativa
+# Versão do formato de configuração declarativa do Kong.
 _format_version: "3.0"
-_comment: "Configuração Kong personalizada para a stack Supabase [CORRIGIDA]."
+_comment: "Configuração Kong com rotas ANINHADAS para máxima compatibilidade."
 
 # ------------------------------------------------------------------------------
 # 1. SERVIÇOS (SERVICES)
-# Esta seção está correta e não precisa de alterações.
+# Agora, cada serviço contém sua própria lista de rotas.
 # ------------------------------------------------------------------------------
 services:
   - name: supabase-auth
     url: http://auth:9999
+    routes:
+      - name: route-auth
+        paths:
+          - /auth/v1
+
   - name: supabase-rest
     url: http://rest:3000
+    routes:
+      - name: route-rest
+        paths:
+          - /rest/v1
+          
   - name: supabase-realtime
     url: http://realtime:4000
+    routes:
+      - name: route-realtime
+        paths:
+          - /realtime/v1
+          
   - name: supabase-storage
     url: http://storage:5000
+    routes:
+      - name: route-storage
+        paths:
+          - /storage/v1
+          
   - name: supabase-functions
     url: http://functions:54321
+    routes:
+      - name: route-functions
+        paths:
+          - /functions/v1
+          
   - name: supabase-studio
     url: http://studio:8000
+    routes:
+      - name: route-studio
+        paths:
+          - /
 
 # ------------------------------------------------------------------------------
-# 2. ROTAS (ROUTES)
-# Esta é a seção que foi corrigida.
-# Note a mudança em cada 'service:'.
-# ------------------------------------------------------------------------------
-routes:
-  - name: route-auth
-    service: { name: 'supabase-auth' } # <--- CORRIGIDO
-    paths:
-      - /auth/v1
-
-  - name: route-rest
-    service: { name: 'supabase-rest' } # <--- CORRIGIDO
-    paths:
-      - /rest/v1
-
-  - name: route-realtime
-    service: { name: 'supabase-realtime' } # <--- CORRIGIDO
-    paths:
-      - /realtime/v1
-
-  - name: route-storage
-    service: { name: 'supabase-storage' } # <--- CORRIGIDO
-    paths:
-      - /storage/v1
-
-  - name: route-functions
-    service: { name: 'supabase-functions' } # <--- CORRIGIDO
-    paths:
-      - /functions/v1
-      
-  - name: route-studio
-    service: { name: 'supabase-studio' } # <--- CORRIGIDO
-    paths:
-      - /
-
-# ------------------------------------------------------------------------------
-# 3. CONSUMERS, PLUGIN e CREDENCIAIS
-# Estas seções estão corretas e não precisam de alterações.
+# 2. CONSUMERS, PLUGIN e CREDENCIAIS
+# Estas seções não mudam e continuam como estão.
 # ------------------------------------------------------------------------------
 consumers:
   - username: anon-consumer
