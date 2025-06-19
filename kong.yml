@@ -1,4 +1,4 @@
-# Versão do formato de configuração declarativa do Kong.
+# Versão do formato de configuração declarativa
 _format_version: "3.0"
 _comment: "Configuração Kong personalizada para a stack Supabase [CORRIGIDA]."
 
