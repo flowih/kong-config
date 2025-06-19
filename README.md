@@ -1,2 +1,2 @@
 # kong-config
-kong-config
+kong-config-2
