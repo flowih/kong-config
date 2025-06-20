@@ -1,45 +1,51 @@
-# kong.yml - Versão Final e Robusta
+# kong.yml - Versão FINAL com endereços fixos (hardcoded)
 _format_version: "3.0"
-_comment: "Configuração Kong usando variáveis de ambiente para roteamento interno."
+_comment: "Configuração Kong com endereços internos FIXOS para garantir o funcionamento no Railway. Sem autenticação para diagnóstico."
 
 services:
+  # O nome do serviço no Railway é 'auth', porta 9999
   - name: supabase-auth
-    url: ${AUTH_INTERNAL_URL} # Usa a variável do Railway
+    url: http://auth.railway.internal:9999
     routes:
       - name: route-auth
         paths:
           - /auth/v1
 
+  # O nome do serviço no Railway é 'rest', porta 3000
   - name: supabase-rest
-    url: ${REST_INTERNAL_URL} # Usa a variável do Railway
+    url: http://rest.railway.internal:3000
     routes:
       - name: route-rest
         paths:
           - /rest/v1
           
+  # O nome do serviço no Railway é 'realtime', porta 4000
   - name: supabase-realtime
-    url: ${REALTIME_INTERNAL_URL} # Usa a variável do Railway
+    url: http://realtime.railway.internal:4000
     routes:
       - name: route-realtime
         paths:
           - /realtime/v1
           
+  # O nome do serviço no Railway é 'storage', porta 5000
   - name: supabase-storage
-    url: ${STORAGE_INTERNAL_URL} # Usa a variável do Railway
+    url: http://storage.railway.internal:5000
     routes:
       - name: route-storage
         paths:
           - /storage/v1
           
+  # O nome do serviço no Railway é 'functions', porta 54321
   - name: supabase-functions
-    url: ${FUNCTIONS_INTERNAL_URL} # Usa a variável do Railway
+    url: http://functions.railway.internal:54321
     routes:
       - name: route-functions
         paths:
           - /functions/v1
           
+  # O nome do serviço no Railway é 'supabase-studio', porta 8000
   - name: supabase-studio
-    url: ${STUDIO_INTERNAL_URL} # Usa a variável do Railway
+    url: http://supabase-studio.railway.internal:8000
     routes:
       - name: route-studio
         paths:
