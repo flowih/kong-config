@@ -1,10 +1,10 @@
 # Versão do formato de configuração declarativa do Kong.
 _format_version: "3.0"
-_comment: "Configuração Kong com rotas ANINHADAS para máxima compatibilidade."
+_comment: "Configuração Kong de diagnóstico: APENAS ROTEAMENTO, SEM AUTENTICAÇÃO."
 
 # ------------------------------------------------------------------------------
-# 1. SERVIÇOS (SERVICES)
-# Agora, cada serviço contém sua própria lista de rotas.
+# 1. SERVIÇOS E ROTAS ANINHADAS
+# Esta seção permanece, pois define para onde o tráfego deve ir.
 # ------------------------------------------------------------------------------
 services:
   - name: supabase-auth
@@ -50,21 +50,6 @@ services:
           - /
 
 # ------------------------------------------------------------------------------
-# 2. CONSUMERS, PLUGIN e CREDENCIAIS
-# Estas seções não mudam e continuam como estão.
+# As seções de 'consumers', 'plugins' e 'keyauth_credentials' foram
+# intencionalmente removidas para desativar a verificação de chave de API.
 # ------------------------------------------------------------------------------
-consumers:
-  - username: anon-consumer
-  - username: service-role-consumer
-
-plugins:
-  - name: key-auth
-    config:
-      key_names: ["apikey"]
-      hide_credentials: true
-
-keyauth_credentials:
-  - consumer: anon-consumer
-    key: ${SUPABASE_ANON_KEY}
-  - consumer: service-role-consumer
-    key: ${SUPABASE_SERVICE_KEY}
