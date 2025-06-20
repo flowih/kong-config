@@ -13,7 +13,7 @@ services:
 
   # Serviço: Postgrest na porta 3000
   - name: supabase-rest
-    url: http://postgrest.railway.internal:3000
+    url: https://postgrest-staging.up.railway.app
     routes:
       - name: route-rest
         paths:
@@ -21,7 +21,7 @@ services:
           
   # Serviço: Supabase Realtime na porta 4000
   - name: supabase-realtime
-    url: http://supabase-realtime.railway.internal:4000
+    url: https://supabase-realtime-staging.up.railway.app
     routes:
       - name: route-realtime
         paths:
@@ -29,23 +29,16 @@ services:
           
   # Serviço: storage-api na porta 5000
   - name: supabase-storage
-    url: http://storage-api.railway.internal:5000
+    url: https:///storage-api-staging.up.railway.app
     routes:
       - name: route-storage
         paths:
           - /storage/v1
-          
-  # Serviço: dependable-nature na porta 54321 (Assumindo que este seja o Functions)
-  - name: supabase-functions
-    url: http://dependable-nature.railway.internal:54321
-    routes:
-      - name: route-functions
-        paths:
-          - /functions/v1
+
           
   # Serviço: Supabase Studio na porta 8000
   - name: supabase-studio
-    url: http://supabase-studio.railway.internal:8000
+    url: https://supabase-studio-staging-b60e.up.railway.app
     routes:
       - name: route-studio
         paths:
