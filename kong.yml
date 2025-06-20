@@ -1,49 +1,49 @@
-# kong.yml - Versão FINAL com endereços fixos (hardcoded)
+# kong.yml - Versão FINAL com nomes de serviço CORRETOS
 _format_version: "3.0"
-_comment: "Configuração Kong com endereços internos FIXOS para garantir o funcionamento no Railway. Sem autenticação para diagnóstico."
+_comment: "Configuração Kong com endereços internos fixos baseados no painel do Railway."
 
 services:
-  # O nome do serviço no Railway é 'auth', porta 9999
+  # Serviço: Gotrue Auth na porta 9999
   - name: supabase-auth
-    url: http://auth.railway.internal:9999
+    url: http://gotrue-auth.railway.internal:9999
     routes:
       - name: route-auth
         paths:
           - /auth/v1
 
-  # O nome do serviço no Railway é 'rest', porta 3000
+  # Serviço: Postgrest na porta 3000
   - name: supabase-rest
-    url: http://rest.railway.internal:3000
+    url: http://postgrest.railway.internal:3000
     routes:
       - name: route-rest
         paths:
           - /rest/v1
           
-  # O nome do serviço no Railway é 'realtime', porta 4000
+  # Serviço: Supabase Realtime na porta 4000
   - name: supabase-realtime
-    url: http://realtime.railway.internal:4000
+    url: http://supabase-realtime.railway.internal:4000
     routes:
       - name: route-realtime
         paths:
           - /realtime/v1
           
-  # O nome do serviço no Railway é 'storage', porta 5000
+  # Serviço: storage-api na porta 5000
   - name: supabase-storage
-    url: http://storage.railway.internal:5000
+    url: http://storage-api.railway.internal:5000
     routes:
       - name: route-storage
         paths:
           - /storage/v1
           
-  # O nome do serviço no Railway é 'functions', porta 54321
+  # Serviço: dependable-nature na porta 54321 (Assumindo que este seja o Functions)
   - name: supabase-functions
-    url: http://functions.railway.internal:54321
+    url: http://dependable-nature.railway.internal:54321
     routes:
       - name: route-functions
         paths:
           - /functions/v1
           
-  # O nome do serviço no Railway é 'supabase-studio', porta 8000
+  # Serviço: Supabase Studio na porta 8000
   - name: supabase-studio
     url: http://supabase-studio.railway.internal:8000
     routes:
