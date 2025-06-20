@@ -1,55 +1,46 @@
-# Versão do formato de configuração declarativa do Kong.
+# kong.yml - Versão Final e Robusta
 _format_version: "3.0"
-_comment: "Configuração Kong de diagnóstico: APENAS ROTEAMENTO, SEM AUTENTICAÇÃO."
+_comment: "Configuração Kong usando variáveis de ambiente para roteamento interno."
 
-# ------------------------------------------------------------------------------
-# 1. SERVIÇOS E ROTAS ANINHADAS
-# Esta seção permanece, pois define para onde o tráfego deve ir.
-# ------------------------------------------------------------------------------
 services:
   - name: supabase-auth
-    url: http://auth:9999
+    url: ${AUTH_INTERNAL_URL} # Usa a variável do Railway
     routes:
       - name: route-auth
         paths:
           - /auth/v1
 
   - name: supabase-rest
-    url: http://rest:3000
+    url: ${REST_INTERNAL_URL} # Usa a variável do Railway
     routes:
       - name: route-rest
         paths:
           - /rest/v1
           
   - name: supabase-realtime
-    url: http://realtime:4000
+    url: ${REALTIME_INTERNAL_URL} # Usa a variável do Railway
     routes:
       - name: route-realtime
         paths:
           - /realtime/v1
           
   - name: supabase-storage
-    url: http://storage:5000
+    url: ${STORAGE_INTERNAL_URL} # Usa a variável do Railway
     routes:
       - name: route-storage
         paths:
           - /storage/v1
           
   - name: supabase-functions
-    url: http://functions:54321
+    url: ${FUNCTIONS_INTERNAL_URL} # Usa a variável do Railway
     routes:
       - name: route-functions
         paths:
           - /functions/v1
           
   - name: supabase-studio
-    url: http://studio:8000
+    url: ${STUDIO_INTERNAL_URL} # Usa a variável do Railway
     routes:
       - name: route-studio
         paths:
           - /
-
-# ------------------------------------------------------------------------------
-# As seções de 'consumers', 'plugins' e 'keyauth_credentials' foram
-# intencionalmente removidas para desativar a verificação de chave de API.
-# ------------------------------------------------------------------------------
