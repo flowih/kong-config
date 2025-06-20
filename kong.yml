@@ -5,7 +5,7 @@ _comment: "Configuração Kong com endereços internos fixos baseados no painel 
 services:
   # Serviço: Gotrue Auth na porta 9999
   - name: supabase-auth
-    url: gotrue-auth-staging.up.railway.app
+    url: https://gotrue-auth-staging.up.railway.app
     routes:
       - name: route-auth
         paths:
