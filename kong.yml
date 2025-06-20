@@ -1,9 +1,9 @@
-# kong.yml - Versão FINAL com nomes de serviço CORRETOS
+# kong.yml - Usando as URLs públicas de cada serviço do Railway
 _format_version: "3.0"
-_comment: "Configuração Kong com endereços internos fixos baseados no painel do Railway."
+_comment: "Configuração Kong com endereços públicos para cada serviço."
 
 services:
-  # Serviço: Gotrue Auth na porta 9999
+  # Serviço: Gotrue Auth
   - name: supabase-auth
     url: https://gotrue-auth-staging.up.railway.app
     routes:
@@ -11,7 +11,7 @@ services:
         paths:
           - /auth/v1
 
-  # Serviço: Postgrest na porta 3000
+  # Serviço: Postgrest
   - name: supabase-rest
     url: https://postgrest-staging.up.railway.app
     routes:
@@ -19,7 +19,7 @@ services:
         paths:
           - /rest/v1
           
-  # Serviço: Supabase Realtime na porta 4000
+  # Serviço: Supabase Realtime
   - name: supabase-realtime
     url: https://supabase-realtime-staging.up.railway.app
     routes:
@@ -27,16 +27,16 @@ services:
         paths:
           - /realtime/v1
           
-  # Serviço: storage-api na porta 5000
+  # Serviço: storage-api
   - name: supabase-storage
-    url: https:///storage-api-staging.up.railway.app
+    # CORREÇÃO: Removi uma barra extra. Estava "https:///...", o que é inválido.
+    url: https://storage-api-staging.up.railway.app
     routes:
       - name: route-storage
         paths:
           - /storage/v1
-
           
-  # Serviço: Supabase Studio na porta 8000
+  # Serviço: Supabase Studio
   - name: supabase-studio
     url: https://supabase-studio-staging-b60e.up.railway.app
     routes:
